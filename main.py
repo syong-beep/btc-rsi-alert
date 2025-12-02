@@ -16,7 +16,7 @@ while True:
         data = requests.get(url).json()
         df = pd.DataFrame(data, columns=['time','open','high','low','close','volume','close_time','quote_vol','trades','taker_buy_base','taker_buy_quote','ignore'])
         df['close'] = pd.to_numeric(df['close'])
-        df['rsi'] = ta.momentum.RSIIndicator(df['close'], window=14).rsi()
+        df['rsi'] = ta.momentum.RSIIndicator(df['close'], window=7).rsi()
         rsi = df['rsi'].iloc[-2]   # 마감된 직전 캔들
         price = df['close'].iloc[-2]
 
